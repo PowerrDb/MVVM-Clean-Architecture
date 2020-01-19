@@ -1,0 +1,25 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // other
+    implementation domainDependencies.kotlin
+    // reactive
+    implementation domainDependencies.rxAndroid
+    implementation domainDependencies.rxJava
+    // android architecture component
+    implementation domainDependencies.pagingRuntime
+    implementation domainDependencies.pagingRxJava
+    implementation domainDependencies.livedata
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

@@ -1,0 +1,89 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+android {
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // android support libs
+    implementation presentationDependencies.material
+    implementation presentationDependencies.appCompat
+    implementation presentationDependencies.recyclerview
+
+    // network
+    implementation presentationDependencies.retrofit
+    implementation presentationDependencies.retrofitGsonConverter
+    implementation presentationDependencies.retrofitRxJava2Adapter
+    implementation presentationDependencies.okhttpLogging
+    // parser
+    implementation presentationDependencies.gson
+    // dependency injection
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.daggerAndroid
+    implementation presentationDependencies.daggerAndroidSupport
+    kapt presentationDependencies.daggerAndroidProcessor
+    annotationProcessor presentationDependencies.daggerCompiler
+    kapt presentationDependencies.daggerCompiler
+    // reactive
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.reactiveStreams
+    // ui
+    implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.navigationFragment
+    implementation presentationDependencies.navigationUi
+    //implementation presentationDependencies.paginate
+    //kapt "com.android.databinding:compiler:3.1.4"
+    //other
+    implementation presentationDependencies.multidex
+    implementation presentationDependencies.kotlin
+    // android architecture component
+    implementation presentationDependencies.lifecycleExtensions
+    implementation presentationDependencies.lifecycleCommon
+    implementation presentationDependencies.pagingRuntime
+
+    implementation presentationDependencies.ktx
+    implementation presentationDependencies.hawk
+    implementation presentationDependencies.ssp
+    implementation presentationDependencies.sdp
+    implementation presentationDependencies.glide
+    kapt presentationDependencies.glideCompiler
+
+    implementation project(':domain')
+}
