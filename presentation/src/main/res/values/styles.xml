@@ -18,9 +18,8 @@
     </style>
 
     <style name="mTextStyle" parent="@style/Widget.MaterialComponents.TextView">
-        <item name="android:fontFamily">@font/iran_sans_mobile_bold</item>
         <item name="android:textColor">@color/mTextColor</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
         <item name="android:gravity">right</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_weight">0.5</item>
