@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="Theme.Sunflower.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+
+
+
+    <style name="TextAppearance.Sunflower.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="mTextStyle" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:fontFamily">@font/iran_sans_mobile_bold</item>
+        <item name="android:textColor">@color/mTextColor</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="imageViewClickable" parent="Theme.AppCompat.Light">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="itemClickAble" parent="Theme.AppCompat.Light">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+
+
+    <style name="toolbarRastam" parent="@style/Widget.MaterialComponents.Toolbar">
+        <item name="android:fontFamily">@font/iran_sans_mobile_bold</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:gravity">center|top</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+</resources>

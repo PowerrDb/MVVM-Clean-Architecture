@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_controller"
+    app:startDestination="@id/fragment_main">
+
+
+
+    <fragment
+        tools:layout="@layout/fragment_detail"
+        android:label="category"
+        android:name="com.challenge.presentation.ui.detainFragment.DetailPageFragment"
+        android:id="@+id/fragment_detail">
+
+    </fragment>
+
+
+    <fragment
+        tools:layout="@layout/fragment_characters"
+        android:label="receipt"
+        android:name="com.challenge.presentation.ui.listCharacterFragment.ListCharacterPageFragment"
+        android:id="@+id/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_fragment_detail"
+            app:destination="@id/fragment_detail" />
+    </fragment>
+
+
+
+
+
+
+</navigation>

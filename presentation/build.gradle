@@ -8,6 +8,9 @@ android {
 
 
     defaultConfig {
+        dataBinding {
+            enabled = true
+        }
         minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
