@@ -2,11 +2,13 @@ package com.challenge.data.repositoryImpl.listCharacterFragment
 
 
 import android.util.Log
+import androidx.lifecycle.Transformations
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
-import com.challenge.data.api.ListCharacterApi
 import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSource
 import com.challenge.data.datasource.listCharacterFragment.byPage.ListOfCharacterDataSourceFactory
+import com.challenge.data.datasource.listCharacterFragment.byPage.PageKeyedListOfCharacterDataSource.Companion.NETWORK_PAGE_SIZE
 import com.challenge.data.extention.applyIoScheduler
 import com.challenge.data.repositoryImpl.BaseRepositoryImpl
 import com.challenge.domain.common.ResultState
@@ -23,27 +25,30 @@ class ListCharacterRepositoryImpl(
     ListCharacterRepository {
 
 
-
-
     override fun getListOfcharacters(): Flowable<ResultState<PagedList<Entity.Character>>> {
-
-
         val characterDataSourceFactory = ListOfCharacterDataSourceFactory(apiSource)
-        val data = RxPagedListBuilder(characterDataSourceFactory,10)
-            .buildFlowable(BackpressureStrategy.BUFFER)
+
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(NETWORK_PAGE_SIZE)
+            .build()
+
+
+           val data = RxPagedListBuilder(characterDataSourceFactory,config).buildObservable()
+
+            return data
+
+                .map { data ->
+                    Log.e("data__",data.size.toString())
+                    if (data.isNotEmpty())
+                        ResultState.Success(data) as ResultState<PagedList<Entity.Character>>
+                    else
+                        ResultState.Loading(data) as ResultState<PagedList<Entity.Character>>
+                }
+                .onErrorReturn { e -> ResultState.Error(e, null) }.toFlowable(BackpressureStrategy.BUFFER)
 
 
 
-        return data
-            .applyIoScheduler()
-            .map { data ->
-                Log.e("data__",data.size.toString())
-                if (data.isNotEmpty())
-                    ResultState.Success(data) as ResultState<PagedList<Entity.Character>>
-                else
-                    ResultState.Loading(data) as ResultState<PagedList<Entity.Character>>
             }
-            .onErrorReturn { e -> ResultState.Error(e, null) }
     }
 
-}

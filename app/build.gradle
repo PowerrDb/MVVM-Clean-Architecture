@@ -83,6 +83,8 @@ dependencies {
     implementation appDependencies.livedata
     implementation appDependencies.hawk
     implementation appDependencies.glide
+    implementation appDependencies.courtines
+    implementation appDependencies.courtinesCore
     kapt appDependencies.glideCompiler
 
 

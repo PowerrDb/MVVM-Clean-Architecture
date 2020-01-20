@@ -35,7 +35,10 @@ class ListCharactersAdapter :
 
 
         fun bind(item: Entity.Character?) {
-
+            binding.apply {
+                model=item
+                executePendingBindings()
+            }
 
         }
 

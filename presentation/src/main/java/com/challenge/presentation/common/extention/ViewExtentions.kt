@@ -2,8 +2,21 @@ package com.challenge.presentation.common.extention
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
-
+@BindingAdapter("imageFromUrl")
+fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
+    if (!imageUrl.isNullOrEmpty()) {
+        Glide.with(view.context)
+            .asBitmap()
+            .circleCrop()
+            .load("https://play.hen-dev.ir/$imageUrl")
+            .into(view)
+    }
+}
 fun View.visible() {
     if (visibility == View.GONE || visibility == View.INVISIBLE)
         visibility = View.VISIBLE

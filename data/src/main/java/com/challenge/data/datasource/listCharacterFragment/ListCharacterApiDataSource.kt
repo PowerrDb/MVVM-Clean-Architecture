@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.util.Log
 import com.challenge.data.datasource.BaseDataSource
 import com.challenge.domain.common.ResultState
+import com.challenge.domain.entity.Entity
 import com.challenge.domain.models.ListCharacterModel
 import io.reactivex.Flowable
 
 
 interface ListCharacterApiDataSource : BaseDataSource {
 
-    fun getListOfCharacters(page: Int, pageSize: Int): Flowable<List<ListCharacterModel>>
+    fun getListOfCharacters(page: Int, pageSize: Int): Flowable<List<Entity.Character>>
 }
 
 @SuppressLint("CheckResult")
@@ -18,7 +19,7 @@ fun getListOfCharacters(
     apiSource: ListCharacterApiDataSource,
     page: Int,
     itemsPerPage: Int,
-    onResult: (result: ResultState<List<ListCharacterModel>>) -> Unit
+    onResult: (result: ResultState<List<Entity.Character>>) -> Unit
 ) {
 
     apiSource.getListOfCharacters(page, itemsPerPage)

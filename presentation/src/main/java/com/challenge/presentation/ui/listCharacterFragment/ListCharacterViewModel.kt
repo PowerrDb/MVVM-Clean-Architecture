@@ -18,13 +18,11 @@ class ListCharacterViewModel @Inject constructor(private val useCase: GetListCha
 
     private val fetch = MutableLiveData<String>()
 
-    fun fetchData() {
-        fetch.postValue("")
-    }
+
 
     val charactersLiveData: LiveData<ResultState<PagedList<Entity.Character>>> =
         Transformations.switchMap(fetch) {
-            Log.e("___",it.toString())
+            Log.e("__a_",it.toString())
             OperationLiveData<ResultState<PagedList<Entity.Character>>> {
                 if (tempDispossable?.isDisposed != true)
                     tempDispossable?.dispose()

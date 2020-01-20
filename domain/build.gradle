@@ -12,6 +12,7 @@ dependencies {
     // android architecture component
     implementation domainDependencies.pagingRuntime
     implementation domainDependencies.pagingRxJava
+    implementation domainDependencies.gson
     implementation domainDependencies.livedata
 }
 

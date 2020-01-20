@@ -3,11 +3,11 @@ package com.challenge.domain.entity
 sealed class Entity {
 
     data class Character(
-        val id: String,
+        val id: Int,
         val name: String,
         val picture: String,
         val type: String,
-        val score: Int
+        val score: Double
     ) : Entity()
 
 
