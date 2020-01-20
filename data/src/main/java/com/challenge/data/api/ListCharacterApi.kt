@@ -6,19 +6,26 @@ import com.challenge.domain.models.ListCharacterModel
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface ListCharacterApi {
-    @GET("character/list")
-    fun getListOfCharacters(@Query("page") page: Int,
-                            @Query("perPage") pageSize: Int): Flowable<List<ListCharacterModel>>
+    @GET("v1/character/list")
+    fun getListOfCharacters(
+        @Query("page") page: Int,
+        @Query("perPage") pageSize: Int
+    ): Flowable<List<ListCharacterModel>>
+
+    @GET("v1/Character/{id}/info")
+    fun getCharacterInfo(@Path("id") id: String): Flowable<ListCharacterModel>
 
 
-    @POST("users/authenticate")
-    fun getNewAccessToken(@Body auth : AuthBodyModel = AuthBodyModel("09367760615","M.Razi")): Call<AuthResponseModel>
+    @POST("v1/users/authenticate")
+    fun getNewAccessToken(
+        @Body auth: AuthBodyModel = AuthBodyModel(
+            "09367760615",
+            "M.Razi"
+        )
+    ): Call<AuthResponseModel>
 
 }

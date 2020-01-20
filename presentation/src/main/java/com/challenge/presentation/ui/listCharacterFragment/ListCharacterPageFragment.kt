@@ -15,6 +15,7 @@ import com.challenge.domain.common.ResultState
 import com.challenge.domain.entity.Entity
 import com.challenge.presentation.R
 import com.challenge.presentation.common.extention.observe
+import com.challenge.presentation.common.extention.removeObserver
 import com.challenge.presentation.databinding.FragmentCharactersBinding
 import com.challenge.presentation.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_characters.*
@@ -27,7 +28,9 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
     private val mainViewModel: ListCharacterViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(ListCharacterViewModel::class.java)
+        activity.let {
+            ViewModelProviders.of(it!!, viewModelFactory).get(ListCharacterViewModel::class.java)
+        }
     }
 
     private val adapter: ListCharactersAdapter by lazy { ListCharactersAdapter() }
@@ -56,20 +59,27 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
         mainViewModel.getCharacters()
 
         observe(mainViewModel.charactersLiveData,::onGetCharacters)
-
+        adapter.itemClickEvent.subscribe {
+          //do when item click
+        }
     }
 
     private fun onGetCharacters(resultState: ResultState<PagedList<Entity.Character>>) {
         Log.e("__onGetCharactessrs",resultState.toString())
         when (resultState) {
-            is ResultState.Success ->{
-                Log.e("__onGetCharacters",resultState.toString())
-                adapter.submitList(resultState.data)}
-        }
+            is ResultState.Success -> {
+                Log.e("__charSucc", resultState.toString())
+                adapter.submitList(resultState.data)
+            }
+            is ResultState.Loading -> {Log.e("__charLoad", resultState.toString()) }
+                is ResultState.Error ->{
+                    Log.e("__charErro", resultState.toString())
 
+                }
+            }
+        }
     }
 
-}
 
 
 

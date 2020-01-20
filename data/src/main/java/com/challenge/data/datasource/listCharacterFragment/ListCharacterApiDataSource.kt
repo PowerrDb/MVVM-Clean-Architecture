@@ -12,8 +12,12 @@ import io.reactivex.Flowable
 interface ListCharacterApiDataSource : BaseDataSource {
 
     fun getListOfCharacters(page: Int, pageSize: Int): Flowable<List<Entity.Character>>
+
+    fun getCharacterInfo(id : String): Flowable<Entity.Character>
+
 }
 
+/*
 @SuppressLint("CheckResult")
 fun getListOfCharacters(
     apiSource: ListCharacterApiDataSource,
@@ -23,6 +27,9 @@ fun getListOfCharacters(
 ) {
 
     apiSource.getListOfCharacters(page, itemsPerPage)
+        .doOnRequest { Log.e("__dooo","loaaaaaaaaaad")
+            ResultState.Loading("")
+        }
         .subscribe({ data ->
             onResult(ResultState.Success(data))
             if (data.isNotEmpty())
@@ -30,4 +37,4 @@ fun getListOfCharacters(
         }, { throwable ->
             onResult(ResultState.Error(throwable, null))
         })
-}
+}*/

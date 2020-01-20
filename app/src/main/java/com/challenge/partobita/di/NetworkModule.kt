@@ -2,7 +2,6 @@ package com.challenge.partobita.di
 
 import android.content.Context
 import com.challenge.cafebazaar.di.qualifier.ApplicationContext
-import com.challenge.data.api.AuthApi
 import com.challenge.data.api.ListCharacterApi
 import com.challenge.partobita.BuildConfig
 import com.challenge.presentation.common.ConnectionStateLiveData
@@ -69,17 +68,12 @@ open class NetworkModule {
 
 
 
-    @Provides
-    @Reusable
-     fun provideAuthApi(retrofit: Retrofit): AuthApi {
-        return  retrofit.create(AuthApi::class.java)
-    }
 
     @Provides
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient) =
         Retrofit.Builder()
-            .baseUrl("https://play.hen-dev.ir/v1/")
+            .baseUrl("https://play.hen-dev.ir/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)

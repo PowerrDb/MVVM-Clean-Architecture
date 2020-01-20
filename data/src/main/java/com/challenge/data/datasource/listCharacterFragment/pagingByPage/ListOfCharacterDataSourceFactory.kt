@@ -1,6 +1,5 @@
-package com.challenge.data.datasource.listCharacterFragment.byPage
+package com.challenge.data.datasource.listCharacterFragment.pagingByPage
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSource

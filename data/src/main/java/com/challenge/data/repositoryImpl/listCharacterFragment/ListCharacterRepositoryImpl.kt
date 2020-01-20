@@ -2,13 +2,11 @@ package com.challenge.data.repositoryImpl.listCharacterFragment
 
 
 import android.util.Log
-import androidx.lifecycle.Transformations
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
 import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSource
-import com.challenge.data.datasource.listCharacterFragment.byPage.ListOfCharacterDataSourceFactory
-import com.challenge.data.datasource.listCharacterFragment.byPage.PageKeyedListOfCharacterDataSource.Companion.NETWORK_PAGE_SIZE
+import com.challenge.data.datasource.listCharacterFragment.pagingByPage.ListOfCharacterDataSourceFactory
+import com.challenge.data.datasource.listCharacterFragment.pagingByPage.PageKeyedListOfCharacterDataSource.Companion.NETWORK_PAGE_SIZE
 import com.challenge.data.extention.applyIoScheduler
 import com.challenge.data.repositoryImpl.BaseRepositoryImpl
 import com.challenge.domain.common.ResultState
@@ -23,6 +21,19 @@ class ListCharacterRepositoryImpl(
 
 ) : BaseRepositoryImpl<Entity.Character>(),
     ListCharacterRepository {
+    override fun getCharacterInfo(id: String): Flowable<ResultState<Entity.Character>> {
+        return apiSource.getCharacterInfo(id)
+            .doOnRequest { ResultState.Loading(Entity.Character()) }
+            .map {
+                ResultState.Success(it)
+            }
+
+
+
+
+
+
+    }
 
 
     override fun getListOfcharacters(): Flowable<ResultState<PagedList<Entity.Character>>> {
@@ -34,18 +45,16 @@ class ListCharacterRepositoryImpl(
             .build()
 
 
-           val data = RxPagedListBuilder(characterDataSourceFactory,config).buildObservable()
+           val data = RxPagedListBuilder(characterDataSourceFactory,config).buildFlowable(BackpressureStrategy.BUFFER)
 
-            return data
+        return data
+            .doOnRequest {
+                Log.e("__iinja","asda")
+                ResultState.Loading("") }
+            .map {
+                Log.e("__iinja",it.toString())
+                ResultState.Success(it) }
 
-                .map { data ->
-                    Log.e("data__",data.size.toString())
-                    if (data.isNotEmpty())
-                        ResultState.Success(data) as ResultState<PagedList<Entity.Character>>
-                    else
-                        ResultState.Loading(data) as ResultState<PagedList<Entity.Character>>
-                }
-                .onErrorReturn { e -> ResultState.Error(e, null) }.toFlowable(BackpressureStrategy.BUFFER)
 
 
 

@@ -5,7 +5,10 @@ sealed class ResultState<T> {
     /**
      * A state of [data] which shows that we know there is still an update to come.
      */
-    data class Loading<T>(val data: T) : ResultState<T>()
+    data class Loading<T>(
+        val data: T
+
+    ) : ResultState<T>()
 
     /**
      * A state that shows the [data] is the last known update.

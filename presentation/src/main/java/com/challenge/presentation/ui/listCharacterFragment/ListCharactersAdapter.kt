@@ -2,10 +2,13 @@ package com.challenge.presentation.ui.listCharacterFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.challenge.domain.entity.Entity
+import com.challenge.presentation.R
 import com.challenge.presentation.databinding.ItemCharacterBinding
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
@@ -32,9 +35,22 @@ class ListCharactersAdapter :
 
     inner class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init{
+            binding.setClickListener {
+                binding.model?.let { model ->
+                    it.findNavController().navigate(
+                        R.id.action_fragment_character_to_fragment_detail,
+                        bundleOf("id" to model.id.toString()))
+
+                    onItemClickSubject.onNext("")
+
+                }
+            }
+        }
 
 
         fun bind(item: Entity.Character?) {
+
             binding.apply {
                 model=item
                 executePendingBindings()

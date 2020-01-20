@@ -36,7 +36,7 @@ class AuthenticationIAuthenticator @Inject constructor(private val api: APIServi
             return null //as per contract of Retrofit Authenticator interface for when unable to contest a challenge
         }
         Log.e("___aaaaa", response.code().toString())
-      val token=  api.apiService()!!.getNewAccessToken(AuthBodyModel("09367760615","M.Razi")).execute().body()!!.token
+      val token=  api.apiService()!!.getNewAccessToken().execute().body()!!.token
 Hawk.put("token",token)
          return response.request().newBuilder()
          .header("Authorization","Bearer $token")
