@@ -11,11 +11,11 @@ class ListCharacterUseCaseImpl(
     private val repository: ListCharacterRepository
 ) : GetListCharacterUseCase {
 
-    override fun getCharacterInfo(id : String): Flowable<ResultState<Entity.Character>> =
+    override fun getCharacterInfo(id : String): Flowable<Entity.Character> =
         repository.getCharacterInfo(id)
 
 
-    override fun getListOfCharacters(): Flowable<ResultState<PagedList<Entity.Character>>> =
-        repository.getListOfcharacters()
+    override fun getListOfCharacters(filter : String): Flowable<PagedList<Entity.Character>> =
+        repository.getListOfcharacters(filter)
 
 }

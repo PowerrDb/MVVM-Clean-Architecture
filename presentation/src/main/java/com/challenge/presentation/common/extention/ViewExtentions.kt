@@ -1,22 +1,16 @@
 package com.challenge.presentation.common.extention
 
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import android.widget.EditText
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
-@BindingAdapter("imageFromUrl")
-fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        Glide.with(view.context)
-            .asBitmap()
-            .circleCrop()
-            .load("https://play.hen-dev.ir/$imageUrl")
-            .into(view)
-    }
-}
+
+
+
 fun View.visible() {
     if (visibility == View.GONE || visibility == View.INVISIBLE)
         visibility = View.VISIBLE
@@ -32,8 +26,29 @@ fun View.gone() {
         visibility = View.GONE
 }
 
-fun View.setMarginTop(marginTop: Int) {
-    val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
-    menuLayoutParams.setMargins(0, marginTop, 0, 0)
-    this.layoutParams = menuLayoutParams
+val subject = PublishSubject.create<String>()
+fun EditText.toObservable() :Observable<String> {
+    var init = false
+   addTextChangedListener(object : TextWatcher {
+
+       override fun afterTextChanged(p0: Editable?) {
+
+           Log.e("----","afterTextChanged ${p0.toString()} ")
+       }
+
+       override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+           Log.e("----","beforeTextChanged ${p0.toString()}")
+
+       }
+
+       override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+           Log.e("----","onTextChanged ${p0.toString()}")
+
+          if (init)
+           subject.onNext(p0.toString())
+           init = true
+       }
+
+   })
+    return subject
 }

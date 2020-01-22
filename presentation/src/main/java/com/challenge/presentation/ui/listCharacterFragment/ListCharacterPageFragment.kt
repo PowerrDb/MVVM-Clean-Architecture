@@ -1,6 +1,7 @@
 package com.challenge.presentation.ui.listCharacterFragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +15,16 @@ import androidx.paging.PagedList
 import com.challenge.domain.common.ResultState
 import com.challenge.domain.entity.Entity
 import com.challenge.presentation.R
+import com.challenge.presentation.common.extention.gone
 import com.challenge.presentation.common.extention.observe
-import com.challenge.presentation.common.extention.removeObserver
+import com.challenge.presentation.common.extention.toObservable
+import com.challenge.presentation.common.extention.visible
 import com.challenge.presentation.databinding.FragmentCharactersBinding
 import com.challenge.presentation.ui.base.BaseFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_characters.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -40,7 +46,7 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
         savedInstanceState: Bundle?
     ): View? {
 
-
+        mainViewModel.getCharacters()
         binding = DataBindingUtil.inflate<FragmentCharactersBinding>(
             inflater,
             R.layout.fragment_characters,
@@ -56,29 +62,41 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvCharacters.adapter = adapter
-        mainViewModel.getCharacters()
-
-        observe(mainViewModel.charactersLiveData,::onGetCharacters)
-        adapter.itemClickEvent.subscribe {
-          //do when item click
-        }
+        observe(mainViewModel.charactersLiveData, ::onGetCharacters)
+       observeSearchBar()
     }
+
+    @SuppressLint("CheckResult")
+    private fun observeSearchBar() {
+        //Search user input with delay
+        binding.searchBar.toObservable()
+            .debounce(700, TimeUnit.MILLISECONDS)
+            .distinctUntilChanged()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { mainViewModel.getCharacters(it) }
+    }
+
 
     private fun onGetCharacters(resultState: ResultState<PagedList<Entity.Character>>) {
-        Log.e("__onGetCharactessrs",resultState.toString())
         when (resultState) {
+            is ResultState.Error -> {}
             is ResultState.Success -> {
-                Log.e("__charSucc", resultState.toString())
-                adapter.submitList(resultState.data)
-            }
-            is ResultState.Loading -> {Log.e("__charLoad", resultState.toString()) }
-                is ResultState.Error ->{
-                    Log.e("__charErro", resultState.toString())
 
-                }
+                if (resultState.data.size==0)binding.notFound.visible() else binding.notFound.gone()
+                adapter.submitList(resultState.data)
+                adapter.notifyDataSetChanged()
+                pbCharacters.gone()
+                rvCharacters.visible() }
+
+            is ResultState.Loading -> {
+                pbCharacters.visible()
+                rvCharacters.gone()
             }
+
         }
     }
+}
 
 
 

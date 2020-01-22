@@ -17,8 +17,8 @@ class ListCharacterApiDataSourceImpl(private val api: ListCharacterApi) :
             .map { info->info.map() }
     }
 
-    override fun getListOfCharacters(page: Int, pageSize: Int): Flowable<List<Entity.Character>> {
-        return api.getListOfCharacters(page,pageSize)
+    override fun getListOfCharacters(page: Int, pageSize: Int,filter : String): Flowable<List<Entity.Character>> {
+        return api.getListOfCharacters(page,pageSize,filter)
             .map { item -> item.map { it.map() } }
     }
 

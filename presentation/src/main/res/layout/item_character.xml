@@ -16,13 +16,16 @@
 
     <androidx.cardview.widget.CardView
         android:onClick="@{clickListener}"
-        app:cardElevation="5dp"
+        app:cardElevation="@dimen/_1sdp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp">
+        android:layout_height="@dimen/_65sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,8 +35,8 @@
             <ImageView
                 android:id="@+id/cv5"
                 imageFromUrl="@{model.picture}"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_margin="@dimen/_4sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/templar_assassin"
@@ -57,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/iran_sans_mobile_fa_num"
+
                     android:includeFontPadding="false"
                     android:text="@{model.name}"
                     android:textColor="#000"
@@ -70,11 +73,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/iran_sans_mobile_fa_num"
+                    android:layout_marginTop="@dimen/_4sdp"
                     android:includeFontPadding="false"
                     android:text="@{model.type}"
                     android:textColor="#838383"
-                    android:textSize="@dimen/_9ssp"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintStart_toStartOf="@+id/textView13"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -88,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:text="@{` `+model.score}"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toStartOf="@+id/view"
@@ -96,7 +99,7 @@
 
             <View
                 android:id="@+id/view"
-                android:layout_width="@dimen/_4sdp"
+                android:layout_width="@dimen/_3sdp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:layout_marginEnd="@dimen/_9sdp"

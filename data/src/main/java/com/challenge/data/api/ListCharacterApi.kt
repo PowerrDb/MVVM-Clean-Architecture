@@ -13,7 +13,8 @@ interface ListCharacterApi {
     @GET("v1/character/list")
     fun getListOfCharacters(
         @Query("page") page: Int,
-        @Query("perPage") pageSize: Int
+        @Query("perPage") pageSize: Int,
+        @Query("filter") filter: String=""
     ): Flowable<List<ListCharacterModel>>
 
     @GET("v1/Character/{id}/info")

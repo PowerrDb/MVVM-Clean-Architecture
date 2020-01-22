@@ -8,8 +8,8 @@ import io.reactivex.Flowable
 
 
 interface GetListCharacterUseCase : BaseUseCase {
-    fun getListOfCharacters(): Flowable<ResultState<PagedList<Entity.Character>>>
+    fun getListOfCharacters(filter : String=""): Flowable<PagedList<Entity.Character>>
 
-    fun getCharacterInfo(id : String): Flowable<ResultState<Entity.Character>>
+    fun getCharacterInfo(id : String): Flowable<Entity.Character>
 
 }

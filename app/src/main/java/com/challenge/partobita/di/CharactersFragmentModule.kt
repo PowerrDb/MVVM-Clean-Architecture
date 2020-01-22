@@ -27,13 +27,15 @@ class CharactersFragmentModule {
         apiSource: ListCharacterApiDataSource
     ): ListCharacterRepository {
         return ListCharacterRepositoryImpl(
-            apiSource)
+            apiSource
+        )
     }
 
     @Provides
     //@PerFragment
     fun provideGetCharactersUseCaseImpl(repository: ListCharacterRepository): GetListCharacterUseCase =
         ListCharacterUseCaseImpl(repository)
+
 
 
 }

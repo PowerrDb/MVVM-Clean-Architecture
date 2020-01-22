@@ -89,5 +89,6 @@ dependencies {
     kapt presentationDependencies.glideCompiler
     implementation presentationDependencies.courtines
     implementation presentationDependencies.courtinesCore
+
     implementation project(':domain')
 }

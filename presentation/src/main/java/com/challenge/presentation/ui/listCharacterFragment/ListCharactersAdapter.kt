@@ -19,8 +19,6 @@ class ListCharactersAdapter :
         diffCallback
     ) {
     private lateinit var binding: ItemCharacterBinding
-    private val onItemClickSubject = PublishSubject.create<String>()
-    val itemClickEvent: Observable<String> = onItemClickSubject
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -38,19 +36,16 @@ class ListCharactersAdapter :
         init{
             binding.setClickListener {
                 binding.model?.let { model ->
+
                     it.findNavController().navigate(
-                        R.id.action_fragment_character_to_fragment_detail,
+                         R.id.action_fragment_character_to_fragment_detail,
                         bundleOf("id" to model.id.toString()))
-
-                    onItemClickSubject.onNext("")
-
                 }
             }
         }
 
 
         fun bind(item: Entity.Character?) {
-
             binding.apply {
                 model=item
                 executePendingBindings()

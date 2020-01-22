@@ -4,110 +4,112 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="data"
+            type="com.challenge.domain.entity.Entity.Character" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:fitsSystemWindows="true"
+        android:background="@drawable/gradiant_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView5"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/constraint"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_170sdp"
-            android:adjustViewBounds="true"
-            android:fitsSystemWindows="true"
-
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/materialToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|top"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-           >
-
-            <ImageView
-                style="@style/imageViewClickable"
-                android:layout_width="@dimen/_27sdp"
-                android:layout_height="@dimen/_27sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:padding="@dimen/_3sdp"
-                app:srcCompat="@drawable/ic_back" />
+            android:layout_height="match_parent">
 
 
-
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv123"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_marginStart="@dimen/_70sdp"
-            android:layout_marginEnd="@dimen/_70sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/materialToolbar">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
+                    android:id="@+id/ivPicture"
+                    imageFromUrl="@{data.picture}"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/constraint"
-                    app:layout_constraintVertical_bias="0.153"
-                    app:srcCompat="@drawable/templar_assassin" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/iran_sans_mobile_fa_num_bold"
-                    android:text="Templar Assassin"
-                    android:textSize="@dimen/_14ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                    app:layout_constraintStart_toStartOf="@+id/imageView6"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/iran_sans_mobile_fa_num_light"
-                    android:text="Ranged,Carry,Escape"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView11"
-                    app:layout_constraintHorizontal_bias="0.526"
-                    app:layout_constraintStart_toStartOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.385"
+                     />
 
 
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/silver"
+                android:text="@{data.name}"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="#000"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/ivPicture"
+                app:layout_constraintHorizontal_bias="0.513"
+                app:layout_constraintStart_toStartOf="@+id/ivPicture"
+                app:layout_constraintTop_toBottomOf="@+id/ivPicture" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/silver"
+                android:text="@{data.type}"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintEnd_toEndOf="@+id/tvName"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/silver"
+                android:gravity="center"
+                android:text="@{``+data.score}"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_25ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/ivPicture"
+                app:layout_constraintStart_toStartOf="@+id/ivPicture"
+                app:layout_constraintTop_toBottomOf="@+id/tvType" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:rotation="270"
+            android:scaleY="-1"
+            app:srcCompat="@drawable/ic_spotlight"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            app:layout_constraintVertical_bias="0.361" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:rotation="270"
+            app:srcCompat="@drawable/ic_spotlight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.251" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

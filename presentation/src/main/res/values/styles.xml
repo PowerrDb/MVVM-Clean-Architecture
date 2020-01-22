@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="mAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimaryDark">#fff</item>
+        <item name="colorAccent">#fff</item>
+    </style>
+
 
     <style name="Theme.Sunflower.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
@@ -42,7 +49,7 @@
 
 
     <style name="toolbarRastam" parent="@style/Widget.MaterialComponents.Toolbar">
-        <item name="android:fontFamily">@font/iran_sans_mobile_bold</item>
+
         <item name="android:textColor">@android:color/black</item>
         <item name="android:gravity">center|top</item>
         <item name="android:textSize">@dimen/_10ssp</item>

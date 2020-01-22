@@ -23,6 +23,13 @@
         android:name="com.challenge.presentation.ui.listCharacterFragment.ListCharacterPageFragment"
         android:id="@+id/fragment_character">
         <action
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/fade_in"
+
+
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+
             android:id="@+id/action_fragment_character_to_fragment_detail"
             app:destination="@id/fragment_detail" />
     </fragment>

@@ -5,11 +5,13 @@ import com.challenge.domain.repository.BaseRepository
 import com.challenge.domain.common.ResultState
 import com.challenge.domain.entity.Entity
 import io.reactivex.Flowable
+import io.reactivex.Observable
 
 
 interface ListCharacterRepository : BaseRepository {
-    fun getListOfcharacters(): Flowable<ResultState<PagedList<Entity.Character>>>
+    fun getListOfcharacters(filter : String=""): Flowable<PagedList<Entity.Character>>
 
-    fun getCharacterInfo(id : String): Flowable<ResultState<Entity.Character>>
+    fun getCharacterInfo(id: String): Flowable<Entity.Character>
+
 
 }

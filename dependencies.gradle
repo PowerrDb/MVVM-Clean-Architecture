@@ -29,6 +29,7 @@ ext {
     glideVersion = '4.9.0'
     glideCompilerVersion = '4.8.0'
     couritinesVersion = '1.1.1'
+    motionLayoutVersion = '2.0.0-alpha2'
     // App
     appDependencies = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
@@ -64,7 +65,7 @@ ext {
             glide                 : "com.github.bumptech.glide:glide:$glideVersion",
             glideCompiler         : "com.github.bumptech.glide:compiler:$glideCompilerVersion",
             courtinesCore         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$couritinesVersion",
-            courtines         : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$couritinesVersion"
+            courtines               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$couritinesVersion"
 
 
     ]
@@ -132,6 +133,7 @@ ext {
             glideCompiler         : "com.github.bumptech.glide:compiler:$glideCompilerVersion",
             courtinesCore         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$couritinesVersion",
             courtines         : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$couritinesVersion"
+
 
 
     ]

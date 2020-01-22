@@ -1,31 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
+
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
 
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCharacters"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="1"
-            tools:listitem="@layout/item_character"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
+            >
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:theme="@style/mAppTheme">
+
+                <com.challenge.presentation.ui.base.CollapsibleToolbar
+                    android:id="@+id/motionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="@dimen/_40sdp"
+                    app:layoutDescription="@xml/scene_09"
+                    android:fitsSystemWindows="false"
+                    app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+                    <ImageView
+                        android:backgroundTint="#fff"
+                        android:id="@+id/background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorAccent"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPartoBita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="@font/silver"
+                        android:text="PARTO BITA"
+                        android:textSize="@dimen/_16ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+                    <LinearLayout
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/label"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:background="@drawable/bg_search_bar"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_3sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+                        app:layout_goneMarginBottom="@dimen/_10sdp">
+
+
+                        <EditText
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"
+                            android:lines="1"
+                            android:id="@+id/searchBar"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="Search"
+                            android:theme="@style/AppTheme"
+                            android:gravity="left|center"
+                            android:paddingStart="@dimen/_6sdp"
+                            android:textSize="@dimen/_11sdp" />
+                        <ImageView
+                            style="@style/imageViewClickable"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.1"
+                            android:padding="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_search_bar" />
+
+                        <Space
+                            android:id="@+id/space"
+                            android:layout_width="1dp"
+                            android:layout_height="1dp"
+                            motion:layout_constraintEnd_toEndOf="parent"
+                            motion:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+
+                </com.challenge.presentation.ui.base.CollapsibleToolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                >
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCharacters"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:spanCount="1"
+                        tools:listitem="@layout/item_character" />
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <ProgressBar
+            android:visibility="visible"
+            android:id="@+id/pbCharacters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notFound"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent" >
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_50sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_box" />
+
+
+
+            <TextView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not Found !"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </layout>

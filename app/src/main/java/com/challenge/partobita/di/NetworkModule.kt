@@ -4,7 +4,6 @@ import android.content.Context
 import com.challenge.cafebazaar.di.qualifier.ApplicationContext
 import com.challenge.data.api.ListCharacterApi
 import com.challenge.partobita.BuildConfig
-import com.challenge.presentation.common.ConnectionStateLiveData
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -49,9 +48,9 @@ open class NetworkModule {
             okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
         }
         return okHttpClientBuilder
-            .connectTimeout(20L, TimeUnit.SECONDS)
-            .writeTimeout(20L, TimeUnit.SECONDS)
-            .readTimeout(30L, TimeUnit.SECONDS).build()
+            .connectTimeout(10L, TimeUnit.SECONDS)
+            .writeTimeout(10L, TimeUnit.SECONDS)
+            .readTimeout(10L, TimeUnit.SECONDS).build()
 
     }
 
@@ -80,9 +79,6 @@ open class NetworkModule {
             .build()
 
 
-    @Provides
-    @Singleton
-    fun provideInternetCheck(@ApplicationContext context: Context) = ConnectionStateLiveData(context)
 
     @Provides
     @Singleton

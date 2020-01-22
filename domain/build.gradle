@@ -1,4 +1,5 @@
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
