@@ -1,8 +1,6 @@
 package com.challenge.partobita.di
 
-import android.content.Context
-import com.challenge.cafebazaar.di.qualifier.ApplicationContext
-import com.challenge.data.api.ListCharacterApi
+import com.challenge.data.api.MApi
 import com.challenge.partobita.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -28,14 +26,14 @@ open class NetworkModule {
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor()
 
     @Provides
-    fun provideHttpAuthenticator(apiServiceHolder :APIServiceHolder): Authenticator = AuthenticationIAuthenticator(apiServiceHolder)
+    fun provideHttpAuthenticator(apiServiceHolder :APIServiceHolder): Authenticator = MAuthenticator(apiServiceHolder)
 
     @Provides
     fun providesOkHttpClient(
         authenticationInterceptor: AuthenticationInterceptor,
         okHttpClientBuilder: OkHttpClient.Builder,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        authenticationAuthenticator: AuthenticationIAuthenticator
+        authenticationAuthenticator: MAuthenticator
     ): OkHttpClient {
 
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -59,8 +57,8 @@ open class NetworkModule {
 
     @Provides
     @Reusable
-    internal fun provideListCharacterApi(retrofit: Retrofit,apiHolder: APIServiceHolder): ListCharacterApi {
-        val api =retrofit.create(ListCharacterApi::class.java)
+    internal fun provideListCharacterApi(retrofit: Retrofit,apiHolder: APIServiceHolder): MApi {
+        val api =retrofit.create(MApi::class.java)
         apiHolder.setAPIService(api)
         return  api
     }

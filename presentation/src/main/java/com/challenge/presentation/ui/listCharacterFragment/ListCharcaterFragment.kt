@@ -1,9 +1,7 @@
 package com.challenge.presentation.ui.listCharacterFragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +18,7 @@ import com.challenge.presentation.common.extention.observe
 import com.challenge.presentation.common.extention.toObservable
 import com.challenge.presentation.common.extention.visible
 import com.challenge.presentation.databinding.FragmentCharactersBinding
+import com.challenge.presentation.ui.SharedViewModel
 import com.challenge.presentation.ui.base.BaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,14 +27,14 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
-class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
+class ListCharcaterFragment : BaseFragment(), LifecycleOwner {
     private lateinit var binding: FragmentCharactersBinding
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val mainViewModel: ListCharacterViewModel by lazy {
+    private val sharedViewModel: SharedViewModel by lazy {
         activity.let {
-            ViewModelProviders.of(it!!, viewModelFactory).get(ListCharacterViewModel::class.java)
+            ViewModelProviders.of(it!!, viewModelFactory).get(SharedViewModel::class.java)
         }
     }
 
@@ -45,24 +44,20 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        mainViewModel.getCharacters()
+        sharedViewModel.getCharacters()
         binding = DataBindingUtil.inflate<FragmentCharactersBinding>(
             inflater,
             R.layout.fragment_characters,
             container,
-            false
-        )
+            false)
         binding.lifecycleOwner = this
         return binding.root
     }
-
-
     @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvCharacters.adapter = adapter
-        observe(mainViewModel.charactersLiveData, ::onGetCharacters)
+        observe(sharedViewModel.charactersLiveData, ::onGetCharacters)
        observeSearchBar()
     }
 
@@ -74,15 +69,13 @@ class ListCharacterPageFragment : BaseFragment(), LifecycleOwner {
             .distinctUntilChanged()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { mainViewModel.getCharacters(it) }
+            .subscribe { sharedViewModel.getCharacters(it) }
     }
-
 
     private fun onGetCharacters(resultState: ResultState<PagedList<Entity.Character>>) {
         when (resultState) {
             is ResultState.Error -> {}
             is ResultState.Success -> {
-
                 if (resultState.data.size==0)binding.notFound.visible() else binding.notFound.gone()
                 adapter.submitList(resultState.data)
                 adapter.notifyDataSetChanged()

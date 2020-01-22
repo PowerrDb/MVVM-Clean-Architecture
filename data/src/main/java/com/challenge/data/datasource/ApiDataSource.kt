@@ -1,8 +1,7 @@
-package com.challenge.data.datasource.listCharacterFragment
+package com.challenge.data.datasource
 
 import android.annotation.SuppressLint
 import android.util.Log
-import com.challenge.data.datasource.BaseDataSource
 import com.challenge.domain.common.ResultState
 import com.challenge.domain.entity.Entity
 import io.reactivex.Flowable
@@ -22,7 +21,7 @@ fun getListOfCharacters(
     apiSource: ListCharacterApiDataSource,
     page: Int,
     itemsPerPage: Int,
-    filter : String="" ,
+    filter : String="",
     onResult: (result: ResultState<List<Entity.Character>>) -> Unit
 ) {
 

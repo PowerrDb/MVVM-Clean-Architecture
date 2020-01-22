@@ -1,8 +1,8 @@
 package com.challenge.partobita.di
 
 
-import com.challenge.presentation.ui.detainFragment.DetailPageFragment
-import com.challenge.presentation.ui.listCharacterFragment.ListCharacterPageFragment
+import com.challenge.presentation.ui.infoFragment.InfoFragment
+import com.challenge.presentation.ui.listCharacterFragment.ListCharcaterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -10,8 +10,8 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentsModule {
 
     @ContributesAndroidInjector
-    abstract fun charactersPageFragment(): ListCharacterPageFragment
+    abstract fun charactersPageFragment(): ListCharcaterFragment
 
     @ContributesAndroidInjector
-    abstract fun detailPageFragment(): DetailPageFragment
+    abstract fun detailPageFragment(): InfoFragment
 }

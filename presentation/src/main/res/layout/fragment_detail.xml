@@ -88,6 +88,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
+            style="@style/imageViewClickable"
 
             android:id="@+id/imageView2"
             android:layout_width="@dimen/_60sdp"
@@ -101,6 +102,8 @@
             app:layout_constraintVertical_bias="0.361" />
 
         <ImageView
+            style="@style/imageViewClickable"
+
             android:id="@+id/imageView3"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
@@ -111,6 +114,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.251" />
 
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/imageViewClickable"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:padding="@dimen/_3sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,4 +1,4 @@
-package com.challenge.presentation.ui.base
+package com.challenge.presentation.common
 
 import android.content.Context
 import android.util.AttributeSet

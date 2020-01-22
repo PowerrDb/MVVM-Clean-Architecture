@@ -3,18 +3,18 @@ package com.challenge.partobita.di;
 import androidx.annotation.Nullable;
 
 
-import com.challenge.data.api.ListCharacterApi;
+import com.challenge.data.api.MApi;
 
 public class APIServiceHolder {
 
-    private ListCharacterApi apiService;
+    private MApi apiService;
 
     @Nullable
-    ListCharacterApi apiService() {
+    MApi apiService() {
         return apiService;
     }
 
-    void setAPIService(ListCharacterApi apiService) {
+    void setAPIService(MApi apiService) {
         this.apiService = apiService;
     }
 }

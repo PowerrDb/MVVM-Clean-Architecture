@@ -1,14 +1,12 @@
-package com.challenge.data.datasource.listCharacterFragment.pagingByPage
+package com.challenge.data.datasource.CharactersPagingByPage
 
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSource
-import com.challenge.data.datasource.listCharacterFragment.getListOfCharacters
-import com.challenge.domain.common.ResultState
+import com.challenge.data.datasource.ListCharacterApiDataSource
 import com.challenge.domain.entity.Entity
 
-class PageKeyedListOfCharacterDataSource(
+class PageKeyedCharactersDataSource(
     private val listApi: ListCharacterApiDataSource,
     private val filter: String
 ) : PageKeyedDataSource<Int, Entity.Character>() {
@@ -25,19 +23,20 @@ class PageKeyedListOfCharacterDataSource(
 
 
 
-        listApi.getListOfCharacters(currentPage, NETWORK_PAGE_SIZE,filter)
+        listApi.getListOfCharacters(currentPage,
+            NETWORK_PAGE_SIZE,filter)
             .subscribe({
                 callback.onResult(it, null, nextPage)
 
             },{
-                Log.e("getListOfCharacters",it.message.toString())
+                Log.e("getListCharacters",it.message.toString())
             })
 
 
 
 
 
-       /* getListOfCharacters(listApi,currentPage, NETWORK_PAGE_SIZE,filter) {data->
+       /* getListCharacters(listApi,currentPage, NETWORK_PAGE_SIZE,filter) {data->
               when (data) {
                   is ResultState.Success ->{
                       Log.e("___PageSucc",data.data.size.toString())
@@ -62,7 +61,8 @@ class PageKeyedListOfCharacterDataSource(
         callback: LoadCallback<Int, Entity.Character>
     ) {
 
-        listApi.getListOfCharacters(currentPage, NETWORK_PAGE_SIZE,filter).doOnRequest {
+        listApi.getListOfCharacters(currentPage,
+            NETWORK_PAGE_SIZE,filter).doOnRequest {
             Log.e("__SDasdA","Loading")
         }.subscribe({
             currentPage++
@@ -73,13 +73,13 @@ class PageKeyedListOfCharacterDataSource(
         })
 
 
-      /*  getListOfCharacters(listApi,currentPage, NETWORK_PAGE_SIZE) {data->
+      /*  getListCharacters(listApi,currentPage, NETWORK_PAGE_SIZE) {data->
             when (data) {
                 is ResultState.Success ->{ callback.onResult(data.data,nextPage)}
             }
 
         }*/
-       /* listApi.getListOfCharacters(currentPage, NETWORK_PAGE_SIZE)
+       /* listApi.getListCharacters(currentPage, NETWORK_PAGE_SIZE)
             .applyIoScheduler()
             .doOnError{
                 Log.e("___v",it.toString())

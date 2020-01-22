@@ -1,10 +1,10 @@
-package com.challenge.presentation.ui.detainFragment
+package com.challenge.presentation.ui.infoFragment
 
 import androidx.lifecycle.LifecycleObserver
 import com.challenge.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class DetailViewModel @Inject constructor() :
+class InfoViewModel @Inject constructor() :
     BaseViewModel(), LifecycleObserver {
 
 

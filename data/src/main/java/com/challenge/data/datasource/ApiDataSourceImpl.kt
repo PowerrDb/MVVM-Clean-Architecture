@@ -1,15 +1,13 @@
-package com.challenge.data.datasource.listCharacterFragment
+package com.challenge.data.datasource
 
-import com.challenge.data.api.ListCharacterApi
+import com.challenge.data.api.MApi
 import com.challenge.data.extention.applyIoScheduler
 import com.challenge.data.mapper.map
-import com.challenge.domain.common.ResultState
 import com.challenge.domain.entity.Entity
-import com.challenge.domain.models.ListCharacterModel
 import io.reactivex.Flowable
 
 
-class ListCharacterApiDataSourceImpl(private val api: ListCharacterApi) :
+class ApiDataSourceImpl(private val api: MApi) :
     ListCharacterApiDataSource {
     override fun getCharacterInfo(id: String): Flowable<Entity.Character> {
         return api.getCharacterInfo(id)

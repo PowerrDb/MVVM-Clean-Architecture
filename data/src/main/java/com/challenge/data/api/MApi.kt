@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 
-interface ListCharacterApi {
+interface MApi {
     @GET("v1/character/list")
     fun getListOfCharacters(
         @Query("page") page: Int,

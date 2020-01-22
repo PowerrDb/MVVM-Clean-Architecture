@@ -8,7 +8,6 @@ import dagger.android.ContributesAndroidInjector
 @Module(includes = [FragmentsModule::class])
 abstract class MainModule {
 
-
     @ContributesAndroidInjector
     abstract fun get(): MainActivity
 

@@ -1,12 +1,12 @@
 package com.challenge.partobita.di
 
-import com.challenge.data.api.ListCharacterApi
-import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSource
-import com.challenge.data.datasource.listCharacterFragment.ListCharacterApiDataSourceImpl
-import com.challenge.data.repositoryImpl.listCharacterFragment.ListCharacterRepositoryImpl
-import com.challenge.domain.repository.listCharacterFragment.ListCharacterRepository
-import com.challenge.domain.usecase.listCharacterFragment.GetListCharacterUseCase
-import com.challenge.domain.usecase.listCharacterFragment.ListCharacterUseCaseImpl
+import com.challenge.data.api.MApi
+import com.challenge.data.datasource.ListCharacterApiDataSource
+import com.challenge.data.datasource.ApiDataSourceImpl
+import com.challenge.data.repositoryImpl.RepositoryImpl
+import com.challenge.domain.repository.Repository
+import com.challenge.domain.usecase.GetUseCase
+import com.challenge.domain.usecase.UseCaseImpl
 
 import dagger.Module
 import dagger.Provides
@@ -18,23 +18,23 @@ class CharactersFragmentModule {
 
     @Provides
     //@PerFragment
-    fun provideApiSource(api: ListCharacterApi): ListCharacterApiDataSource =
-        ListCharacterApiDataSourceImpl(api)
+    fun provideApiSource(api: MApi): ListCharacterApiDataSource =
+        ApiDataSourceImpl(api)
 
     @Provides
     //@PerFragment
     fun provideRepository(
         apiSource: ListCharacterApiDataSource
-    ): ListCharacterRepository {
-        return ListCharacterRepositoryImpl(
+    ): Repository {
+        return RepositoryImpl(
             apiSource
         )
     }
 
     @Provides
     //@PerFragment
-    fun provideGetCharactersUseCaseImpl(repository: ListCharacterRepository): GetListCharacterUseCase =
-        ListCharacterUseCaseImpl(repository)
+    fun provideGetCharactersUseCaseImpl(repository: Repository): GetUseCase =
+        UseCaseImpl(repository)
 
 
 

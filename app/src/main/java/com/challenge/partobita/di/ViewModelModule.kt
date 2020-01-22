@@ -3,7 +3,7 @@ package com.challenge.partobita.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.challenge.partobita.di.qualifier.ViewModelKey
-import com.challenge.presentation.ui.listCharacterFragment.ListCharacterViewModel
+import com.challenge.presentation.ui.SharedViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,6 +17,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ListCharacterViewModel::class)
-    fun bindRecieptViewModel(viewModel: ListCharacterViewModel): ViewModel
+    @ViewModelKey(SharedViewModel::class)
+    fun bindRecieptViewModel(viewModel: SharedViewModel): ViewModel
 }

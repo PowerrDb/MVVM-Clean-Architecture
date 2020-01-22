@@ -32,7 +32,7 @@
                 android:layout_height="@dimen/_100sdp"
                 android:theme="@style/mAppTheme">
 
-                <com.challenge.presentation.ui.base.CollapsibleToolbar
+                <com.challenge.presentation.common.CollapsibleToolbar
                     android:id="@+id/motionLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -109,7 +109,7 @@
                             motion:layout_constraintTop_toTopOf="parent" />
                     </LinearLayout>
 
-                </com.challenge.presentation.ui.base.CollapsibleToolbar>
+                </com.challenge.presentation.common.CollapsibleToolbar>
 
             </com.google.android.material.appbar.AppBarLayout>
 

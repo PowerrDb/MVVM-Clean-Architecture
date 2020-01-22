@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.challenge.domain.entity.Entity
 import com.challenge.presentation.R
 import com.challenge.presentation.databinding.ItemCharacterBinding
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
 
 
 class ListCharactersAdapter :
@@ -30,50 +28,41 @@ class ListCharactersAdapter :
         holder.bind(list)
     }
 
-
     inner class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init{
+        init {
             binding.setClickListener {
                 binding.model?.let { model ->
-
                     it.findNavController().navigate(
-                         R.id.action_fragment_character_to_fragment_detail,
-                        bundleOf("id" to model.id.toString()))
+                        R.id.action_fragment_character_to_fragment_detail,
+                        bundleOf("id" to model.id.toString())
+                    )
                 }
             }
         }
 
-
         fun bind(item: Entity.Character?) {
             binding.apply {
-                model=item
+                model = item
                 executePendingBindings()
             }
-
         }
-
-
     }
 
-
     companion object {
-
         private val diffCallback: DiffUtil.ItemCallback<Entity.Character> =
             object : DiffUtil.ItemCallback<Entity.Character>() {
-
                 override fun areItemsTheSame(
                     oldItem: Entity.Character,
                     newItem: Entity.Character
                 ): Boolean {
-                    return oldItem.id==newItem.id
+                    return oldItem.id == newItem.id
                 }
-
                 override fun areContentsTheSame(
                     oldItem: Entity.Character,
                     newItem: Entity.Character
                 ): Boolean {
-                    return oldItem.id==newItem.id
+                    return oldItem.id == newItem.id
                 }
             }
     }

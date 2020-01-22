@@ -11,7 +11,7 @@
     <fragment
         tools:layout="@layout/fragment_detail"
         android:label="category"
-        android:name="com.challenge.presentation.ui.detainFragment.DetailPageFragment"
+        android:name="com.challenge.presentation.ui.infoFragment.InfoFragment"
         android:id="@+id/fragment_detail">
 
     </fragment>
@@ -20,7 +20,7 @@
     <fragment
         tools:layout="@layout/fragment_characters"
         android:label="receipt"
-        android:name="com.challenge.presentation.ui.listCharacterFragment.ListCharacterPageFragment"
+        android:name="com.challenge.presentation.ui.listCharacterFragment.ListCharcaterFragment"
         android:id="@+id/fragment_character">
         <action
             app:enterAnim="@anim/fade_out"
