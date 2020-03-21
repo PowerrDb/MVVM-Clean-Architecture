@@ -26,6 +26,7 @@
 
 
                 <ImageView
+                    android:transitionName="transtion_name_example"
                     android:id="@+id/ivPicture"
                     imageFromUrl="@{data.picture}"
                     android:layout_width="@dimen/_90sdp"

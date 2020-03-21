@@ -44,7 +44,6 @@ class ListCharcaterFragment : BaseFragment(), LifecycleOwner {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedViewModel.getCharacters()
         binding = DataBindingUtil.inflate<FragmentCharactersBinding>(
             inflater,
             R.layout.fragment_characters,

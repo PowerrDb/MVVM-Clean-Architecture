@@ -33,6 +33,7 @@
 
 
             <ImageView
+                android:transitionName="transtion_name_example"
                 android:id="@+id/cv5"
                 imageFromUrl="@{model.picture}"
                 android:layout_width="@dimen/_50sdp"

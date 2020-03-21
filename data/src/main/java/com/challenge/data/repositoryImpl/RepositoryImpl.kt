@@ -4,8 +4,8 @@ package com.challenge.data.repositoryImpl
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
 import com.challenge.data.datasource.ListCharacterApiDataSource
-import com.challenge.data.datasource.CharactersPagingByPage.CharactersDataSourceFactory
-import com.challenge.data.datasource.CharactersPagingByPage.PageKeyedCharactersDataSource.Companion.NETWORK_PAGE_SIZE
+import com.challenge.data.datasource.charactersPagingByPage.CharactersDataSourceFactory
+import com.challenge.data.datasource.charactersPagingByPage.PageKeyedCharactersDataSource.Companion.NETWORK_PAGE_SIZE
 import com.challenge.domain.entity.Entity
 import com.challenge.domain.repository.Repository
 import io.reactivex.BackpressureStrategy

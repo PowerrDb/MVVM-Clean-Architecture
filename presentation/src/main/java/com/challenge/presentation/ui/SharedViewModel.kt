@@ -23,6 +23,17 @@ class SharedViewModel @Inject constructor(
     private val fetchInfoCharacter = MutableLiveData<String>()
     private val fetchCharacterList = MutableLiveData<String>()
 
+    init {
+     getCharacters()
+    }
+    fun getCharacters(search: String = "") {
+        fetchCharacterList.postValue(search)
+    }
+
+    fun getCharacterInfo(id: String) {
+        fetchInfoCharacter.postValue(id)
+    }
+
     val infoCharacterLiveData: LiveData<ResultState<Entity.Character>> =
         Transformations.switchMap(fetchInfoCharacter) { searchValue ->
             OperationLiveData<ResultState<Entity.Character>> {
@@ -52,16 +63,10 @@ class SharedViewModel @Inject constructor(
                         { data -> postValue(ResultState.Success(data)) },
                         { postValue(ResultState.error(it)) })
                 tempDisposable?.track()
+
             }
         }
 
-    fun getCharacters(search: String = "") {
-        fetchCharacterList.postValue(search)
-    }
-
-    fun getCharacterInfo(id: String) {
-        fetchInfoCharacter.postValue(id)
-    }
 
 
 }
