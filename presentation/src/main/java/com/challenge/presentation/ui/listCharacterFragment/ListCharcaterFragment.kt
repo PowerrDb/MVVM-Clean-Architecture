@@ -2,6 +2,7 @@ package com.challenge.presentation.ui.listCharacterFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,8 +74,11 @@ class ListCharcaterFragment : BaseFragment(), LifecycleOwner {
 
     private fun onGetCharacters(resultState: ResultState<PagedList<Entity.Character>>) {
         when (resultState) {
-            is ResultState.Error -> {}
+            is ResultState.Error -> {
+                Log.e("Error","Error")
+            }
             is ResultState.Success -> {
+
                 if (resultState.data.size==0)binding.notFound.visible() else binding.notFound.gone()
                 adapter.submitList(resultState.data)
                 adapter.notifyDataSetChanged()

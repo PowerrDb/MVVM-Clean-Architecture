@@ -58,10 +58,10 @@ class SharedViewModel @Inject constructor(
                     tempDisposable?.dispose()
                 tempDisposable = useCase.getListCharacters(it)
                     .doOnRequest { postValue(ResultState.loading()) }
-                    .doOnError { postValue(ResultState.error(it)) }
+                    .doOnError { postValue(ResultState.Error(it)) }
                     .subscribe(
                         { data -> postValue(ResultState.Success(data)) },
-                        { postValue(ResultState.error(it)) })
+                        { postValue(ResultState.Error(it)) })
                 tempDisposable?.track()
 
             }

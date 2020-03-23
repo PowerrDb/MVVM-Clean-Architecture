@@ -3,6 +3,7 @@ package com.challenge.presentation.ui.infoFragment
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,7 @@ class InfoFragment : BaseFragment() {
 
     private fun onGetCharacterInfo(resultState: ResultState<Entity.Character>) {
         when (resultState) {
-            is ResultState.Error -> {}
+            is ResultState.Error -> { Log.e("___errrrrr","onGetCharacterInfo")}
             is ResultState.Loading -> {}
             is ResultState.Success -> {
 
